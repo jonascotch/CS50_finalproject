@@ -22,8 +22,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbar-items">
-                    {% if session["user_id"] %}
+                    {% if session['name'] %}
                         <ul class="navbar-nav ms-auto mb-2">
+                            <li class="nav-item"><a class="nav-link" href="/menu">Menu</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}
@@ -36,19 +37,17 @@
                            
             </div>
           </nav>
-    
+    <div>
     {% with messages = get_flashed_messages()%}
     {% if messages %}
         {% for message in messages%}
-            <h3 id = "messages" class="alert alert-warning mb-0 text-center">
+            <h6 id = "messages" class="alert alert-warning mb-0 text-center">
                 {{message}}
-            </h3>
+            </h6>
         {% endfor %}
     {% endif %}
     {% endwith %}
-
     </div>
-    
     {% block main %}
     {% endblock %}
         
