@@ -1,12 +1,8 @@
 from flask import Flask, flash, redirect, render_template, request, session, url_for, g
 import hashlib
-import sqlalchemy
-from sqlalchemy import create_engine, text
 import sqlite3 as sql
 from flask_session import Session
 from helpers import login_required
-
-
 
 app = Flask(__name__)
 
@@ -18,8 +14,12 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # set the connection to the database
-engine = sqlalchemy.create_engine('sqlite:///database.db')
-db = engine.connect()
+def sql_open():
+    con = sql.connect('database.db')
+    con.row_factory = sql.Row
+    cursor = con.cursor()
+
+    return cursor
 
 @app.route('/')
 def root():
@@ -31,12 +31,13 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         hashed_pw = hashlib.md5(password.encode()).hexdigest()
-        dbdata = db.execute(text('SELECT * FROM users')).fetchall()
-        dbpass = dbdata[0].hash
-        dbuser = dbdata[0].username        
-        if dbpass == hashed_pw and username == dbuser:
-            session['name'] = dbuser
-            flash('Login correcto, ' + session['name'])
+        cursor = sql_open()
+        cursor.execute('SELECT username, hash FROM users')
+        userdata = cursor.fetchone()
+        cursor.close()
+        if userdata['hash'] == hashed_pw and userdata['username'] == username:
+            session['name'] = username
+            flash('Welcome, ' + session['name'])
             return render_template('menu.html')
         else:
             flash('Tente de novo')
