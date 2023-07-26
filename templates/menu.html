@@ -4,10 +4,7 @@
 
 <div class="container-fluid text-center row m-3">
     <a class="m-3" href="#"><button class="btn btn-primary">Lista de ruturas</button></a>
-    <a class="m-3" href="#"><button class="btn btn-primary">Inserir Nova</button></a>
-    <a class="m-3" href="#"><button class="btn btn-primary">Alterar</button></a>
+    <a class="m-3" href="{{url_for('newform')}}"><button class="btn btn-primary">Inserir Nova</button></a>
 </div>
 
-<h3>{{ dbdata }}</h3>
-
-{% endblock main %}
+{% endblock main %} 

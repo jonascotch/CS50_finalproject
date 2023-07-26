@@ -1,0 +1,59 @@
+{% extends 'home.html'%}
+
+{% block main%}
+<form class="m-3 mt-4" action="/add" method="POST">
+    <div class="row g-2 bg-secondary-subtle add-form">
+        <div class="form-floating col-lg-3 mt-3">            
+            <input name="code" id="code" type="number" class="form-control bg-light" placeholder="">
+            <label for="code" >Código</label>
+        </div>
+        <div class="form-floating col-lg-9 mt-3">                        
+            <input name="name" id="name" type="email" class="form-control bg-light" placeholder="">
+            <label for="name">Designação</label>   
+        </div>      
+        <div class="form-floating col-lg-6 mt-3">
+            <input name="forn" id="forn" type="text" class="form-control bg-light" placeholder="">
+            <label for="forn">Fornecedor</label>
+        </div>
+        <div class="form-floating col-lg-6 mt-3">            
+            <input name="enddate" id="enddate" type="date" class="form-control bg-light" placeholder="">
+            <label for="enddate" class="bg-body-transparent m-0">Data de fim da rutura</label>            
+        </div>
+        <div class="form-floating col-lg-6 mt-3">            
+            <input name="lastdate" id="lastdate" type="date" class="form-control bg-light" placeholder="">
+            <label for="lastdate" class="bg-body-transparent m-0">Data da última interação</label>            
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="form-check col-lg-2 mt-4" style="padding-top:10px">
+            <input name="public" id="public" type="checkbox" class="form-check-input">
+            <label for="public" class="text-danger">Público</label>                                   
+        </div>
+        <div class="form-check col-lg-2 mt-4" style="padding-top:10px">            
+            <label for="solved" class="text-success">Resolvido</label>
+            <input name="solved" id="solved" type="checkbox" class="form-check-input">                        
+        </div>
+        <div class="col-lg-3 mt-3">       
+            <select class="form-select bg-light col-3" style="height:57px">
+                <option disabled selected>Alternativa</option>
+                <option value="newforn">Novo fornecedor</option>
+                <option value="newmed">Alternativa terapêutica</option>
+            </select>
+        </div>    
+        <div class="form-floating col-lg-9 mt-3">            
+            <input name="alter" id="alter" type="text" class="form-control bg-light" placeholder="">
+            <label for="alter" class="bg-body-transparent m-0">Qual</label>
+        </div>
+        <div class="form-floating col-lg-12 mt-3 mb-3">            
+            <textarea name="obs" id="obs" class="form-control bg-light" style="height:200px" placeholder=""></textarea>
+            <label for="obs" class="bg-body-transparent">Observações</label>                        
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" class="btn btn-success col-1 mt-2 ms-5" value="Criar"></input>
+        <div class="col"></div>
+        <a href="{{ url_for('menu') }}" class="btn btn-danger col-1 mt-2 me-5">Cancelar</a>
+    </div>
+    
+        
+</form>
+{% endblock main %}

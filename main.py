@@ -56,5 +56,9 @@ def logout():
 def menu():
     return render_template('menu.html')
 
+@app.route('/newform', methods=('GET', 'POST'))
+def newform():
+    return render_template('newform.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
