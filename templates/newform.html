@@ -1,18 +1,20 @@
 {% extends 'home.html'%}
 
 {% block main%}
+<div class="newform-bg pt-3">
+    <h4 class="text-center">Formulário de introdução de nova rutura</h4>
 <form class="m-3 mt-4" action="/add" method="POST">
     <div class="row g-2 bg-secondary-subtle add-form">
         <div class="form-floating col-lg-3 mt-3">            
-            <input name="code" id="code" type="number" class="form-control bg-light" placeholder="">
-            <label for="code" >Código</label>
+            <input name="code" id="code" type="number" class="form-control bg-light" placeholder="" required>
+            <label for="code">Código</label>
         </div>
         <div class="form-floating col-lg-9 mt-3">                        
-            <input name="name" id="name" type="email" class="form-control bg-light" placeholder="">
+            <input name="name" id="name" type="email" class="form-control bg-light" placeholder="" required>
             <label for="name">Designação</label>   
         </div>      
         <div class="form-floating col-lg-6 mt-3">
-            <input name="forn" id="forn" type="text" class="form-control bg-light" placeholder="">
+            <input name="forn" id="forn" type="text" class="form-control bg-light" placeholder="" required>
             <label for="forn">Fornecedor</label>
         </div>
         <div class="form-floating col-lg-6 mt-3">            
@@ -20,20 +22,16 @@
             <label for="enddate" class="bg-body-transparent m-0">Data de fim da rutura</label>            
         </div>
         <div class="form-floating col-lg-6 mt-3">            
-            <input name="lastdate" id="lastdate" type="date" class="form-control bg-light" placeholder="">
+            <input name="order" id="order" type="number" class="form-control bg-light" placeholder="" required>
+            <label for="order" class="bg-body-transparent m-0">Nota de encomenda</label>            
+        </div>
+        <div class="form-floating col-lg-6 mt-3">            
+            <input name="lastdate" id="lastdate" type="date" class="form-control bg-light" placeholder="" required>
             <label for="lastdate" class="bg-body-transparent m-0">Data da última interação</label>            
         </div>
-        <div class="col-lg-1"></div>
-        <div class="form-check col-lg-2 mt-4" style="padding-top:10px">
-            <input name="public" id="public" type="checkbox" class="form-check-input">
-            <label for="public" class="text-danger">Público</label>                                   
-        </div>
-        <div class="form-check col-lg-2 mt-4" style="padding-top:10px">            
-            <label for="solved" class="text-success">Resolvido</label>
-            <input name="solved" id="solved" type="checkbox" class="form-check-input">                        
-        </div>
+        
         <div class="col-lg-3 mt-3">       
-            <select class="form-select bg-light col-3" style="height:57px">
+            <select class="form-select form-select-lg bg-light col-3" style="height: 58px" >
                 <option disabled selected>Alternativa</option>
                 <option value="newforn">Novo fornecedor</option>
                 <option value="newmed">Alternativa terapêutica</option>
@@ -41,7 +39,7 @@
         </div>    
         <div class="form-floating col-lg-9 mt-3">            
             <input name="alter" id="alter" type="text" class="form-control bg-light" placeholder="">
-            <label for="alter" class="bg-body-transparent m-0">Qual</label>
+            <label for="alter" class="bg-body-transparent m-0">Detalhe</label>
         </div>
         <div class="form-floating col-lg-12 mt-3 mb-3">            
             <textarea name="obs" id="obs" class="form-control bg-light" style="height:200px" placeholder=""></textarea>
@@ -49,11 +47,17 @@
         </div>
     </div>
     <div class="row">
-        <input type="submit" class="btn btn-success col-1 mt-2 ms-5" value="Criar"></input>
-        <div class="col"></div>
-        <a href="{{ url_for('menu') }}" class="btn btn-danger col-1 mt-2 me-5">Cancelar</a>
-    </div>
-    
-        
+        <input type="submit" class="btn btn-success col-lg-1 ms-auto" value="Criar"></input>
+        <div class="form-check col-lg-3 mx-auto" style="display:flex; justify-content:center">
+            <input name="public" id="public" type="checkbox" class="form-check-input m-2">
+            <label for="public" class="text-danger fs-5">Público</label>                                   
+        </div>
+        <div class="form-check col-lg-3 mx-auto" style="display:flex; justify-content:center">
+            <input name="solved" id="solved" type="checkbox" class="form-check-input m-2">            
+            <label for="solved" class="text-success fs-5">Resolvido</label>                                     
+        </div>
+        <a href="{{ url_for('menu') }}" class="btn btn-danger col-lg-1 me-auto">Cancelar</a>
+    </div>        
 </form>
+</div>
 {% endblock main %}
