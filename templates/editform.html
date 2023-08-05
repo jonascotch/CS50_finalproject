@@ -1,0 +1,108 @@
+{% extends 'home.html'%}
+
+{% block main%}
+<div class="newform-bg pt-3">
+    <h4 class="text-center">Editar rutura</h4>
+<form id="editform" class="m-3 mt-4" action="{{ url_for('edit', id = data['id']) }}" method="POST">
+    <div class="row g-2 bg-secondary-subtle add-form">
+        <div class="form-floating col-lg-3 mt-3">            
+            <input name="code" id="code" type="number" class="form-control bg-light" placeholder="" required autocomplete="off" value="{{ data['code'] }}">
+            <label for="code">Código</label>
+        </div>
+        <div class="form-floating col-lg-9 mt-3">                        
+            <input name="desig" id="desig" type="text" class="form-control bg-light" placeholder="" required autocomplete="off" value="{{ data['desig'] }}">
+            <label for="desig">Designação</label>   
+        </div>      
+        <div class="form-floating col-lg-6 mt-3">
+            <input name="forn" id="forn" type="text" class="form-control bg-light" placeholder="" required autocomplete="off" value="{{ data['forn'] }}">
+            <label for="forn">Fornecedor</label>
+        </div>
+        <div class="form-floating col-lg-6 mt-3">            
+            <input name="enddate" id="enddate" type="date" class="form-control bg-light" placeholder="" required value="{{ data['end_date'] }}">
+            <label for="enddate" class="bg-body-transparent m-0">Data de fim da rutura</label>            
+        </div>
+        <div class="form-floating col-lg-6 mt-3">            
+            <input name="order" id="order" type="number" class="form-control bg-light" placeholder="" required autocomplete="off" value="{{ data['order_nr'] }}">
+            <label for="order" class="bg-body-transparent m-0">Nota de encomenda</label>            
+        </div>
+        <div class="form-floating col-lg-6 mt-3">            
+            <input name="lastdate" id="lastdate" type="date" class="form-control bg-light" placeholder="" required value="{{ data['last_date'] }}">
+            <label for="lastdate" class="bg-body-transparent m-0">Data da última interação</label>            
+        </div>
+        
+        <div class="col-lg-3 mt-3">       
+            <select name="alter" class="form-select bg-light col-3" style="height: 58px" id="alternative">
+                <option disabled selected>Alternativa</option>
+                <option value="newforn">Novo fornecedor</option>
+                <option value="newmed">Alternativa terapêutica</option>
+            </select>
+        </div>    
+        <div class="form-floating col-lg-9 mt-3">            
+            <input name="detail" id="detail" type="text" class="form-control bg-light" placeholder="" autocomplete="off" value="{{ data['detail'] }}">
+            <label for="detail" class="bg-body-transparent m-0">Detalhe</label>
+        </div>
+        <div class="form-floating col-lg-12 mt-3 mb-3">            
+            <textarea name="obs" id="obs" class="form-control bg-light" style="height:200px" placeholder="" autocomplete="off">{{ data['obs'] }}</textarea>
+            <label for="obs" class="bg-body-transparent">Observações</label>                        
+        </div>
+    </div>
+    <div class="row g-2">
+        <button type="submit" class="btn btn-success col m-4" form="editform">Gravar Alterações</button>
+        <div class="form-check col m-4" style="display:flex; justify-content:center">
+            {% if data['public'] == 'true' %}
+            <input name="public" id="public" type="checkbox" class="form-check-input m-2" value="true" checked>
+            {% else %}
+            <input name="public" id="public" type="checkbox" class="form-check-input m-2" value="true">
+            {% endif %}
+            <label for="public" class="text-danger fs-5">Público</label>                                   
+        </div>
+        <div class="form-check col m-4" style="display:flex; justify-content:center">
+            {% if data['solved'] == 'true' %}
+            <input name="solved" id="solved" type="checkbox" class="form-check-input m-2" value="true" checked>
+            {% else %}
+            <input name="solved" id="solved" type="checkbox" class="form-check-input m-2" value="true">   
+            {% endif %}         
+            <label for="solved" class="text-success fs-5">Resolvido</label>                                     
+        </div>
+        <a href="{{ url_for('list', status='other') }}" class="btn btn-warning col m-4">Cancelar Alterações</a>
+        <a href="#" class="btn btn-danger col m-4" id="delBtn">Apagar Registo</a>                  
+    </div>    
+</form>
+<form id="deleteform" class="col-m-4" action="{{ url_for('delete', id = data['id']) }}" method="POST">    
+    <input type="submit"
+           class="btn btn-danger btn-md mx-auto" 
+           style="display:none" 
+           id="hiddenConf" 
+           form="deleteform" 
+           value="Mesmo?"
+           onclick="return confirm('De certeza absoluta, sintética, analítica?')">
+</form>
+</div>
+{% endblock main %}
+{% block script %}
+<script>
+    bswitch = document.getElementById("delBtn");
+    bswitch.addEventListener("click", toggledisplay)
+
+    function toggledisplay(){
+        child = document.getElementById('hiddenConf');
+
+        if (child.style.display == 'none'){
+                child.style.display = 'block'
+            }
+            else {
+                child.style.display = 'none'
+            }
+        }
+
+        const selectedOption = JSON.parse({{ alter | tojson }})
+
+        function fillOption(value){
+            const select = document.querySelector('#alternative')
+            select.value = value
+        }
+
+        fillOption(selectedOption);
+
+</script>
+{% endblock script %}

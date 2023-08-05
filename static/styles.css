@@ -1,5 +1,6 @@
 body, html{
     height: 100%;
+    text-decoration: none;
 }
 
 .add-form {
@@ -15,6 +16,22 @@ body, html{
 .newform-bg{
     background-color: #e2e2e2;
     height: 91.6%;
+}
+
+#deleteform {
+    margin-top: -20px;
+}
+
+/* Chrome, Safari, Edge. No arrows in input number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 /*body * {
