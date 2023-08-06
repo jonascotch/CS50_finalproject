@@ -22,6 +22,11 @@ body, html{
     margin-top: -20px;
 }
 
+table * {
+    font-family: "PT Sans Narrow";
+    font-size: 18px;
+}
+
 /* Chrome, Safari, Edge. No arrows in input number*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
