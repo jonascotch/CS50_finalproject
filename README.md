@@ -8,6 +8,9 @@ I've been working as a hospital pharmacist and there's always beeen a problem wi
 But lately that problem has been growing as some drugs are not profitable to manufacture and yet there are no equivalent substitutes.  
 These shortages have to be closely monitored, along with looking for alternative manufacturers and managing stocks to avoid interrupting treatments or running out of stock.  
 The information on these shorteges is ussually kept in a Excel worksheet and is difficult to update and to extract meaningful data from.
+I'm sorry all the app is in portuguese as I really mean to use it in the day-to-day work.
+Feel free to ask anything if the language makes it difficult to understand the use of the app.
+I guess the programming part is just (almost) universal!
 
 ### My solution
 I've spotted an oportunity to put my newly acquired skills to help in this matter and to further make information available to others, namely doctors and nurses.  
@@ -17,7 +20,7 @@ It also has an Admin profile that gives access to all the information and to its
 ### Flask/Python
 Firstly I created the "app.py" file to be the brain of the app.  
 
-There are the different routes:  
+These are all the different routes:  
 ```
 @app.route('/')
 ```  
@@ -55,10 +58,10 @@ The "try-excepts" were used to manage the checkboxes absence of value when not c
 ```  
 - Deletes the selected info from the database, after several confirmations. 
 
-This gave me the opportunity to work with SQLite3 on FLask without the CS50 library "training wheels".  
-For it I needed the ``` sql_open(): ``` function, to easily access the database when needed.  
-
-Also used hashlib instead of hash for password encryption.
+## SQL
+This gave me the opportunity to work with SQLite3 on Flask without the CS50 library "training wheels".  
+For it I needed the ``` sql_open(): ``` function, to easily access the database when needed.
+Created a database (database.db) with 2 tables (users and ruts) and set the up using the sqlite3 command-line
 
 ## HTML
 The bones of the front-end, located in the **templates** folder:
@@ -78,9 +81,22 @@ The bones of the front-end, located in the **templates** folder:
 ## Some Javascript
 Not a lot, just enough to make the pages a little more "reactive":  
 - The menu page and the editform have some "pop-up" buttons
-- The editform has a little script to fill the select option according to data from database. In this json.dumps methods was used to pass data to Javascript. And JSON.parse / tojson was used to retrieve it and use it in the script.
-
+- The editform has a little script to fill the select option according to data from database. In this the  ```json.dumps``` methods was used to pass data to Javascript. And ```JSON.parse``` / ```tojson``` was used to retrieve it and use it in the script.
 
 ## DataTables
+Found this (or maybe it was just the same as Professor Malan used in the lecture!), as it takes care of the tables and makes them more manageable.  
+Adds pagination, a search box, number of items to be show and all sorts of "tweaks" to the tables.  
+Makes the columns "sortable"  and I used it, turning it off were it didn't make sense ("details" column in list.html, for example).  
+Found out it could be translated into portuguese. It's extremely verstile. Really enjoyed learning and using it.  
+Everything about it, here:  **[DataTables](https://datatables.net/)**.
 
-## Booststrap
+## VSCode
+The first big barrier and maybe the biggest one in this project was that I decided to develop it locally in my laptop using **VSCode**.  
+And then I realized how easy CS50 made it to code in the workspace.  
+Had to learn about installing extensions, pip (thanks for the lecture, Carter), creating a virtual environment and activating it so I could finally start developing the app.
+It all runs fine in my computer (think the video shows that), so I guess I got this right.
+Also learned some Git (thanks, Tarun), even though I used it very briefly, adding and commiting some changes, because I did this project alone and I understand this is a great tool for collaborating.  
+Going to commit this to GitHub as a learning experience.  
+Finally did some research on how to run this app in the Cloud (Google Cloud) and am really excited to try that as well.
+
+This was (my) CS50.
