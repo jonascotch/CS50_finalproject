@@ -11,6 +11,7 @@
                 <th>Designação</th>
                 <th>Fornecedor</th>
                 <th>NE</th>
+                <th>Atualizado em</th>
                 <th>Em rutura até</th>
                 <th>Detalhe</th>
             </tr>
@@ -25,7 +26,8 @@
                 <td style="width:100px">{{ row['code'] }}</td>
                 <td>{{ row['desig'] }}</td>
                 <td>{{ row['forn'] }}</td>
-                <td style="width:100px">{{ row['order_nr'] }}</td>                
+                <td style="width:100px">{{ row['order_nr'] }}</td>
+                <td style="width:150px">{{ row['last_date'] }}</td>                
                 <td style="width:150px">{{ row['end_date'] }}</td>
                 <td style="width:50px; text-align: center;"><a class="text-color-black" href="{{ url_for('details', id=row['id']) }}"><i class="bi bi-info-square text-dark fs-5"></i></a></td>
             </tr>
@@ -44,6 +46,7 @@
             {
                 language: {url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-PT.json',},
                 columns: [
+                    null,
                     null,
                     null,
                     null,
