@@ -7,12 +7,12 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-#app.config['SECRET_KEY'] = "This is a really g00d secret keY!"
+app.config['SECRET_KEY'] = "This is a really g00d secret keY!"
 
 # set session
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+# app.config["SESSION_PERMANENT"] = False
+# app.config["SESSION_TYPE"] = "filesystem"
+# Session(app)
 
 # set the connection to the database
 def sql_open():

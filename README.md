@@ -1,5 +1,5 @@
 # The Drugs Shortage Database
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/4gvsQhFZxkg
 #### Description:
 
 ### Background
